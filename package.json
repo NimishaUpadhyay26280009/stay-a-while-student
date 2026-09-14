@@ -1,0 +1,13 @@
+{
+  "name": "stay-a-while-student",
+  "version": "2.0.0",
+  "description": "Stay a While \u2014 student companion with Gemini chat and study tools",
+  "type": "module",
+  "scripts": {
+    "start": "node server/server.js"
+  },
+  "dependencies": {
+    "dotenv": "latest",
+    "express": "latest"
+  }
+}

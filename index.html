@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stay a While — Student Companion</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="sw-root" id="sw-root" data-theme="light">
+  <div class="sw-bgglow"></div>
+
+  <header class="sw-head">
+    <div class="sw-brand">
+      <div class="sw-mark"><span></span></div>
+      <div>
+        <h1>Stay a While</h1>
+        <p>no rush, no agenda — just stay a while</p>
+      </div>
+    </div>
+    <div class="sw-head-actions">
+      <button class="sw-icon-btn" id="sw-theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+        ☼
+      </button>
+      <button class="sw-help-btn" id="sw-help-open">Need help now</button>
+    </div>
+  </header>
+
+  <nav class="sw-nav" aria-label="Main navigation">
+    <button class="sw-tab active" data-tab="talk" id="sw-tab-talk">💬 Talk</button>
+    <button class="sw-tab" data-tab="tools" id="sw-tab-tools">🧰 Student Toolkit</button>
+  </nav>
+
+  <!-- TALK -->
+  <section class="sw-panel active" id="sw-panel-talk">
+    <div class="sw-chat" id="sw-chat">
+      <div class="sw-row bot">
+        <div class="sw-avatar"></div>
+        <div class="sw-bubble bot">
+          Hi. I'm here, and there's no right way to start.<br><br>
+          Tell me what's going on — college, studies, stress, anything. Take your time.
+        </div>
+      </div>
+
+      <div class="sw-quick-actions" id="sw-quick-actions">
+        <button class="sw-chip" data-prompt="Help me make a realistic study plan for today.">📚 Study plan</button>
+        <button class="sw-chip" data-prompt="I'm feeling overwhelmed with college work. Help me break it into small steps.">🧩 Break it down</button>
+        <button class="sw-chip" id="sw-breathe-chip">🌬️ Breathe with me</button>
+        <button class="sw-chip" data-prompt="Give me a short motivational push to start studying.">✨ Motivate me</button>
+      </div>
+
+      <div class="sw-row bot sw-typing" id="sw-typing">
+        <div class="sw-avatar"></div>
+        <div class="sw-bubble bot"><span class="sw-td"></span><span class="sw-td"></span><span class="sw-td"></span></div>
+      </div>
+
+      <div class="sw-crisis" id="sw-crisis">
+        <h3>Your safety matters most right now</h3>
+        <p>If you may hurt yourself or don't feel safe, please contact a trusted person or crisis support now. This app is not a replacement for professional or emergency help.</p>
+        <div class="sw-lines">
+          <a href="tel:14416">Tele-MANAS <span>14416</span></a>
+          <a href="tel:18005990019">KIRAN <span>1800-599-0019</span></a>
+          <a href="tel:18602662345">Vandrevala Foundation <span>1860-266-2345</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="sw-inputwrap">
+      <div class="sw-input-tools">
+        <button class="sw-input-option" id="sw-breathe-option">🌬️ Breathing exercise</button>
+        <button class="sw-input-option" id="sw-study-prompt">📚 Student help</button>
+      </div>
+      <div class="sw-inputrow">
+        <textarea class="sw-textarea" id="sw-input" rows="1" placeholder="Type whatever's on your mind…"></textarea>
+        <button class="sw-send" id="sw-send" aria-label="Send">
+          ➤
+        </button>
+      </div>
+      <div class="sw-foot">Stay a While listens and supports — it isn't a doctor or therapist. If things feel heavy, please talk to a real person too.</div>
+    </div>
+  </section>
+
+  <!-- TOOLKIT -->
+  <section class="sw-panel" id="sw-panel-tools">
+    <div class="sw-tools">
+
+      <div class="sw-card sw-student-summary">
+        <div class="sw-card-head">
+          <div class="sw-card-icon student">🎓</div>
+          <div>
+            <p class="sw-card-title">Student Dashboard</p>
+            <p class="sw-card-sub">A small overview of what you want to get done</p>
+          </div>
+        </div>
+        <div class="sw-stat-grid">
+          <div class="sw-stat"><strong id="sw-task-count">0</strong><span>tasks left</span></div>
+          <div class="sw-stat"><strong id="sw-goal-count">0</strong><span>goals</span></div>
+          <div class="sw-stat"><strong id="sw-study-mins">0</strong><span>study mins</span></div>
+          <div class="sw-stat"><strong id="sw-streak">0</strong><span>day streak</span></div>
+        </div>
+      </div>
+
+      <div class="sw-card">
+        <div class="sw-card-head">
+          <div class="sw-card-icon task">✅</div>
+          <div>
+            <p class="sw-card-title">Today's Tasks</p>
+            <p class="sw-card-sub">Keep the list short enough to actually finish</p>
+          </div>
+        </div>
+        <form class="sw-add-row" id="sw-task-form">
+          <input id="sw-task-input" type="text" maxlength="100" placeholder="e.g. Java assignment">
+          <button type="submit">Add</button>
+        </form>
+        <div class="sw-list" id="sw-task-list"></div>
+        <p class="sw-empty" id="sw-task-empty">No tasks yet. Add one small thing.</p>
+      </div>
+
+      <div class="sw-card">
+        <div class="sw-card-head">
+          <div class="sw-card-icon timer">🍅</div>
+          <div>
+            <p class="sw-card-title">Study Focus Timer</p>
+            <p class="sw-card-sub">25 minutes focus, then a real break</p>
+          </div>
+        </div>
+        <div class="sw-timer-body">
+          <div class="sw-ring-wrap">
+            <svg viewBox="0 0 120 120" width="112" height="112">
+              <circle cx="60" cy="60" r="52" fill="none" stroke="var(--line)" stroke-width="10"/>
+              <circle id="sw-ring" cx="60" cy="60" r="52" fill="none" stroke="var(--peach-deep)" stroke-width="10" stroke-linecap="round" transform="rotate(-90 60 60)"/>
+            </svg>
+            <div class="sw-ring-num" id="sw-ring-num">25:00</div>
+          </div>
+          <div class="sw-timer-right">
+            <div class="sw-mode-row">
+              <button class="sw-mode-pill active" data-mode="focus">Focus 25</button>
+              <button class="sw-mode-pill" data-mode="short">Break 5</button>
+              <button class="sw-mode-pill" data-mode="long">Break 15</button>
+            </div>
+            <div class="sw-timer-controls">
+              <button class="sw-tbtn start" id="sw-timer-start">Start</button>
+              <button class="sw-tbtn reset" id="sw-timer-reset">Reset</button>
+            </div>
+            <div class="sw-timer-status" id="sw-timer-status">Ready when you are</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sw-card">
+        <div class="sw-card-head">
+          <div class="sw-card-icon exam">📅</div>
+          <div>
+            <p class="sw-card-title">Exam Countdown</p>
+            <p class="sw-card-sub">Set one important upcoming date</p>
+          </div>
+        </div>
+        <div class="sw-exam-grid">
+          <input id="sw-exam-name" type="text" maxlength="60" placeholder="Exam name">
+          <input id="sw-exam-date" type="date">
+          <button id="sw-exam-save">Save countdown</button>
+        </div>
+        <div class="sw-countdown" id="sw-countdown">No exam set yet.</div>
+      </div>
+
+      <div class="sw-card">
+        <div class="sw-card-head">
+          <div class="sw-card-icon marks">🧮</div>
+          <div>
+            <p class="sw-card-title">Marks & Percentage</p>
+            <p class="sw-card-sub">Quickly check your score</p>
+          </div>
+        </div>
+        <div class="sw-calc-grid">
+          <input id="sw-marks-obtained" type="number" min="0" step="0.01" placeholder="Marks obtained">
+          <input id="sw-marks-total" type="number" min="1" step="0.01" placeholder="Total marks">
+          <button id="sw-calc-marks">Calculate</button>
+        </div>
+        <div class="sw-result" id="sw-marks-result">Your percentage will appear here.</div>
+      </div>
+
+      <div class="sw-card">
+        <div class="sw-card-head">
+          <div class="sw-card-icon goal">🎯</div>
+          <div>
+            <p class="sw-card-title">Study Goals</p>
+            <p class="sw-card-sub">Turn vague plans into small targets</p>
+          </div>
+        </div>
+        <form class="sw-add-row" id="sw-goal-form">
+          <input id="sw-goal-input" type="text" maxlength="100" placeholder="e.g. Finish Java classes today">
+          <button type="submit">Add</button>
+        </form>
+        <div class="sw-list" id="sw-goal-list"></div>
+        <p class="sw-empty" id="sw-goal-empty">No goals yet.</p>
+      </div>
+
+      <div class="sw-card">
+        <div class="sw-card-head">
+          <div class="sw-card-icon dump">📝</div>
+          <div>
+            <p class="sw-card-title">Brain Dump / Notes</p>
+            <p class="sw-card-sub">Saved only in this browser on this device</p>
+          </div>
+        </div>
+        <textarea class="sw-dump-area" id="sw-dump" placeholder="Write what you need to remember, revise, or get out of your head…"></textarea>
+        <div class="sw-dump-row">
+          <span class="sw-dump-hint">Local browser storage</span>
+          <button class="sw-dump-clear" id="sw-dump-clear">Clear</button>
+        </div>
+      </div>
+
+      <div class="sw-card">
+        <div class="sw-card-head">
+          <div class="sw-card-icon breath">🌬️</div>
+          <div>
+            <p class="sw-card-title">1-Minute Breathing Reset</p>
+            <p class="sw-card-sub">A simple paced breathing exercise</p>
+          </div>
+        </div>
+        <div class="sw-breath-mini">
+          <div class="sw-breath-orb" id="sw-breath-orb">Breathe</div>
+          <div>
+            <strong id="sw-breath-phase">Ready</strong>
+            <p id="sw-breath-instruction">Press start for a gentle 4–4–6 rhythm.</p>
+          </div>
+        </div>
+        <div class="sw-breath-controls">
+          <button class="sw-tbtn start" id="sw-breath-start">Start</button>
+          <button class="sw-tbtn reset" id="sw-breath-stop">Stop</button>
+        </div>
+      </div>
+
+      <div class="sw-card">
+        <div class="sw-card-head">
+          <div class="sw-card-icon motiv">✨</div>
+          <div>
+            <p class="sw-card-title">A little something for today</p>
+            <p class="sw-card-sub">No pressure, just a small reminder</p>
+          </div>
+        </div>
+        <p class="sw-motiv-text" id="sw-motiv-text">One page, one problem, one breath at a time — that's enough.</p>
+        <button class="sw-motiv-btn" id="sw-motiv-btn">Show me another</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BREATHING MODAL -->
+  <div class="sw-modal-bg" id="sw-breath-modal">
+    <div class="sw-modal sw-breath-modal">
+      <button class="sw-modal-x" id="sw-breath-close" aria-label="Close">×</button>
+      <div class="sw-modal-breath-orb" id="sw-modal-orb">Ready</div>
+      <h3>Take one minute</h3>
+      <p id="sw-modal-breath-text">A simple 4–4–6 breathing rhythm: inhale 4 seconds, hold 4, exhale 6.</p>
+      <div class="sw-breath-progress"><div id="sw-breath-progress"></div></div>
+      <div class="sw-modal-actions">
+        <button class="sw-tbtn start" id="sw-modal-breath-start">Start</button>
+        <button class="sw-tbtn reset" id="sw-modal-breath-stop">Stop</button>
+      </div>
+      <p class="sw-small-note">Stop if you feel uncomfortable. This is a relaxation exercise, not medical treatment.</p>
+    </div>
+  </div>
+
+  <!-- HELP MODAL -->
+  <div class="sw-modal-bg" id="sw-modal-bg">
+    <div class="sw-modal">
+      <h3>You don't have to go through this alone</h3>
+      <p>If it feels like too much right now, please reach out to someone you trust or professional support.</p>
+      <div class="sw-lines">
+        <a href="tel:14416">Tele-MANAS <span>14416</span></a>
+        <a href="tel:18005990019">KIRAN <span>1800-599-0019</span></a>
+        <a href="tel:18602662345">Vandrevala Foundation <span>1860-266-2345</span></a>
+        <a href="tel:9820466726">AASRA <span>+91 98204 66726</span></a>
+      </div>
+      <button class="sw-modal-close" id="sw-modal-close">Close</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
